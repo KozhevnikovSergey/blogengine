@@ -1,0 +1,31 @@
+{% extends 'blog/base_blog.html' %}
+
+{% block title %}
+    Tag Create - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <forma action="{% url 'tag_create_url'%}" method="post">
+        {% csrf_token %}
+
+
+
+        {% for field in form %}
+            <div class="form-gpoup">
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+
+                {{ field.label }}
+                {{ field }}
+            </div>
+        {% endfor %}
+
+        <!--{{ form.title }}-->
+        <!--{{ form.slug }}-->
+
+        <button type="submit" class="btn btn-primar">Create Tag</button>
+    </forma>
+{% endblock %}
